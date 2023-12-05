@@ -3,15 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Dron
+  - key
+  - empty
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Grnd
   - Water
   - UI
-  - 
+  - Vrag
   - 
   - 
   - 
