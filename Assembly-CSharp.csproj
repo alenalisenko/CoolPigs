@@ -56,7 +56,9 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Actions\MoveAction.cs" />
+    <Compile Include="Assets\Scripts\Actions\Scout.cs" />
+    <Compile Include="Assets\Scripts\Pazzles\Unexploredcell.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraControler.cs" />
     <Compile Include="Assets\UnityAssets\Mesh-Combiner-master\Scripts\MeshCombiner.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -761,13 +763,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="NaughtyAttributes.Editor.csproj">
-      <Project>{B3E219BF-C71C-78F4-C015-002C9EBEAF49}</Project>
-      <Name>NaughtyAttributes.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Test.csproj">
       <Project>{5A8D888A-FA5F-1226-95C1-156E91995B50}</Project>
       <Name>NaughtyAttributes.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Editor.csproj">
+      <Project>{B3E219BF-C71C-78F4-C015-002C9EBEAF49}</Project>
+      <Name>NaughtyAttributes.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Core.csproj">
       <Project>{FCA123D1-CB1B-A0A7-2317-85022ED3F7E2}</Project>
