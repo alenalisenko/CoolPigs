@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,11 +12,11 @@ public class ProgrammingObj : MonoBehaviour
     public Vector3 startPos;
     private bool isOneTriger = false;
     private bool isHold1 = false;
+    private float angle;
 
     public void isRun()
     {
         StartCoroutine(delay());
-        
     }
 
     public void Start()
@@ -46,30 +47,23 @@ public class ProgrammingObj : MonoBehaviour
                 bool isPrvk = true;
                 foreach (var str in lineFunctiy)
                 {
-                    string dosplit = str.Replace(")", "");
+                    string dosplit = str.Replace( ")", "");
                     string[] line = dosplit.Split("(");
                     if (isPrvk)
                     {
-                        yield return new WaitUntil(()=> Physics.CheckSphere(transform.position, Convert.ToInt32(emptyDistance), LayerMask.GetMask(tagEmpty)));
+                        yield return new WaitUntil(()=> Physics.CheckSphere(transform.position, 
+                            Convert.ToInt32(emptyDistance), LayerMask.GetMask(tagEmpty)));
                         isPrvk = false;
                     }
-                    if (line[0] == "move")
+                    angle = Convert.ToInt32(line[1]);
+                    ICommand command = CreateCommand(line, transform);
+                    if (command != null)
                     {
                         for (int j = 0; j < Convert.ToInt32(line[1]); j++)
                         {
                             transform.position += transform.forward;
                             yield return new WaitForSeconds(0.25f);
                         }
-                    }
-                    else if (line[0] == "rotate")
-                    {
-                        Vector3 rotate = transform.eulerAngles;
-                        rotate.y = Convert.ToInt32(line[1]);
-                        transform.rotation = Quaternion.Euler(rotate);
-                    }
-                    else if (line[0] == "hold")
-                    {
-                        isHold1 = true;
                     }
                 }
             }
@@ -81,26 +75,29 @@ public class ProgrammingObj : MonoBehaviour
                 {
                     string dosplit = str.Replace(")", "");
                     string[] line = dosplit.Split("(");
-                    if (line[0] == "move")
-                    {
-                        for (int j = 0; j < Convert.ToInt32(line[1]); j++)
-                        {
-                            transform.position += transform.forward;
-                            yield return new WaitForSeconds(0.25f);
-                        }
-                    }
-                    else if (line[0] == "rotate")
-                    {
-                        Vector3 rotate = transform.eulerAngles;
-                        rotate.y = Convert.ToInt32(line[1]);
-                        transform.rotation = Quaternion.Euler(rotate);
-                    }
-                    else if (line[0] == "hold")
-                    {
-                        isHold1 = true;
-                    }
+                    ICommand command = CreateCommand(line, transform);
+                    command.Execute();
                 }
             }
+        }
+    }
+    
+    private ICommand? CreateCommand(string[] line, Transform transform)
+    {
+        switch (line[0])
+        {
+            case "move":
+                return new MoveCommand(transform, Convert.ToInt32(line[1]));
+            case "rotate":
+                Vector3 rotate = transform.eulerAngles;
+                rotate.y = angle;
+                transform.rotation = Quaternion.Euler(rotate);
+                return null;
+            case "hold":
+                isHold1 = true;
+                return null;
+            default:
+                return null;
         }
     }
 
