@@ -56,9 +56,9 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Actions\Scout.cs" />
     <Compile Include="Assets\Scripts\Pazzles\Unexploredcell.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraControler.cs" />
+    <Compile Include="Assets\Scripts\Actions\Actions.cs" />
     <Compile Include="Assets\UnityAssets\Mesh-Combiner-master\Scripts\MeshCombiner.cs" />
   </ItemGroup>
   <ItemGroup>
