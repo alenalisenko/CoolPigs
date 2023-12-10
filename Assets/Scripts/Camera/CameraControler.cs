@@ -13,12 +13,18 @@ public class CameraControler : MonoBehaviour
     }
     private void Update()
     {
-        float distance = Vector3.Distance(_transform.position, drons[dronselected].transform.position);
-        if (distance != 0)
+        if (drons[dronselected] != null)
         {
-            float axisy = -(_transform.position.y - drons[dronselected].transform.position.y) * speedmultiplier;
-            float axisx = -(_transform.position.x - drons[dronselected].transform.position.x) * speedmultiplier;
-            _transform.position += axisy * _transform.TransformDirection(Vector3.up) * Time.deltaTime + axisx * _transform.TransformDirection(Vector3.right) * Time.deltaTime;
+            float distance = Vector3.Distance(_transform.position, drons[dronselected].transform.position);
+            if (distance != 0)
+            {
+                float axisy = -(_transform.position.y - drons[dronselected].transform.position.y) * speedmultiplier;
+                float axisx = -(_transform.position.x - drons[dronselected].transform.position.x) * speedmultiplier;
+                _transform.position += axisy * _transform.TransformDirection(Vector3.up) * Time.deltaTime + axisx * _transform.TransformDirection(Vector3.right) * Time.deltaTime;
+            }
+            float moveaxisx = Input.GetAxis("Horizontal") * speedmultiplier * Time.deltaTime;
+            float moveaxisy = Input.GetAxis("Vertical") * speedmultiplier * Time.deltaTime;
+            drons[dronselected].transform.position += new Vector3(moveaxisx, moveaxisy, 0);
         }
     }
 }

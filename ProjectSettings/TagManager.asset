@@ -3,21 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Rock
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - obstacle
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - UnexploredCells
+  - PostProcessing
+  - Drons
+  - Rock
+  - Charge
+  - Items
+  - Lever
   - 
   - 
   - 
