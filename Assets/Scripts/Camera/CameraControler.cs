@@ -2,23 +2,17 @@ using UnityEngine;
 
 public class CameraControler : MonoBehaviour
 {
-    private Transform _transform;
+    public Transform target; // Ссылка на Transform игрока
+    public float smoothSpeed = 0.125f; // Параметр для плавного следования
 
-    public GameObject[] drons;
-    public int dronselected = 0;
-    public int speedmultiplier = 2;
-    private void Awake()
+    void LateUpdate()
     {
-        _transform = transform;
-    }
-    private void Update()
-    {
-        float distance = Vector3.Distance(_transform.position, drons[dronselected].transform.position);
-        if (distance != 0)
+        if (target != null)
         {
-            float axisy = -(_transform.position.y - drons[dronselected].transform.position.y) * speedmultiplier;
-            float axisx = -(_transform.position.x - drons[dronselected].transform.position.x) * speedmultiplier;
-            _transform.position += axisy * _transform.TransformDirection(Vector3.up) * Time.deltaTime + axisx * _transform.TransformDirection(Vector3.right) * Time.deltaTime;
+            Vector3 desiredPosition = target.position + new Vector3(0, 0, -10); // Установка желаемой позиции камеры
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed); // Плавное следование
+
+            transform.position = smoothedPosition; // Установка новой позиции камеры
         }
     }
 }
