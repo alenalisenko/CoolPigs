@@ -1,11 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
-using Drone;
-using Drone.Commands;
 using Drones.Commands;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI; // Не забудьте добавить эту директиву
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -13,6 +10,8 @@ namespace UI
 
     public class CommandHandler : MonoBehaviour
     {
+        public DroneExecuter droneExecuter { get; set; } = new DroneExecuter();
+        public GameObject canvas;
         public TMP_Dropdown dropdown;
         public Transform commandPanel; // Панель, на которой будут отображаться команды
         public List<ICommand> commandPool = new List<ICommand>();
@@ -21,7 +20,7 @@ namespace UI
         public Button startButton;
         public float distanceBetweenCommands = 5f; // Расстояние между командами
         public List<GameObject> settingsWindows;
-        private DroneControl droneController;
+        public  GameObject drone;
         // Словарь для хранения объектов ICommand по имени
         public Dictionary<string, ICommand> commandDictionary = new Dictionary<string, ICommand>()
         {
@@ -49,7 +48,6 @@ namespace UI
 
             // Добавим опции в TMP_Dropdown
             dropdown.AddOptions(options);
-            droneController = GetComponent<DroneControl>();
             // Подпишемся на событие нажатия кнопки
             addButton.onClick.AddListener(OnAddButtonClick);
             startButton.onClick.AddListener(OnStartButtonClick);
@@ -63,6 +61,7 @@ namespace UI
             // Получим объект ICommand по имени
             ICommand selectedCommand = commandDictionary[selectedCommandName];
             selectedCommand.ShowSettingsWindow();
+            selectedCommand.Drone = drone;
 
             // Добавим выбранную команду в массив commandObjects
             if (commandPool.Count <= 13)
@@ -119,19 +118,13 @@ namespace UI
                     prevText.rectTransform.anchoredPosition.y - prevText.rectTransform.sizeDelta.y / 2 -
                     distanceBetweenCommands);
             }
-            droneController.AddCommand(selectedCommand);
         }
         private void OnStartButtonClick()
         {
-            // Проверим, что DroneController существует
-            if (droneController != null)
+            canvas.SetActive(false);
+            foreach (ICommand command in commandPool)
             {
-                // Вызываем выполнение команд
-                droneController.ExecuteCommands();
-            }
-            else
-            {
-                Debug.LogError("DroneController not found. Make sure it is attached to the same GameObject as CommandHandler.");
+                command.Execute();
             }
         }
     }

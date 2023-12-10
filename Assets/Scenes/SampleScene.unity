@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 129646349}
   - component: {fileID: 129646348}
   m_Layer: 5
-  m_Name: Button
+  m_Name: AddButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,6 +245,50 @@ RectTransform:
   m_AnchoredPosition: {x: 171.79398, y: 133}
   m_SizeDelta: {x: 47.788, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &279072680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 279072682}
+  - component: {fileID: 279072681}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &279072681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279072680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ed69b4b26ce4a4cb0af19a2ee53cf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &279072682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279072680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 705.4, y: 340.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &307062636
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.0690002, y: -0.97720337}
+  m_AnchoredPosition: {x: 4.069031, y: -0.97720337}
   m_SizeDelta: {x: -107.1376, y: -70.7064}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &521916657
@@ -1027,7 +1071,7 @@ GameObject:
   - component: {fileID: 629978214}
   - component: {fileID: 629978213}
   m_Layer: 5
-  m_Name: Button
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1149,7 +1193,6 @@ GameObject:
   - component: {fileID: 679456695}
   - component: {fileID: 679456694}
   - component: {fileID: 679456698}
-  - component: {fileID: 679456699}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1256,26 +1299,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5981aca5271b9b54d952fcab594950f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 679456692}
   dropdown: {fileID: 433704163}
   commandPanel: {fileID: 521916656}
   referenceText: {fileID: 1935524250}
   addButton: {fileID: 129646348}
-  startButton: {fileID: 0}
+  startButton: {fileID: 629978213}
   distanceBetweenCommands: 10
   settingsWindows:
   - {fileID: 2176844977527703296, guid: da653156fa6314f4fb88f21b9bc0fa63, type: 3}
---- !u!114 &679456699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679456692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0feb5f545528b9d4b9ac3e6b1d59e0d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  drone: {fileID: 1164004143}
 --- !u!1 &688036350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2172,7 @@ GameObject:
   - component: {fileID: 1164004144}
   - component: {fileID: 1164004149}
   - component: {fileID: 1164004150}
+  - component: {fileID: 1164004151}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -2262,6 +2296,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPanel: {fileID: 679456692}
+--- !u!114 &1164004151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164004143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde25ab0ffa7448bbdf692f972a4fa64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCharge: 100
 --- !u!1 &1201489099
 GameObject:
   m_ObjectHideFlags: 0

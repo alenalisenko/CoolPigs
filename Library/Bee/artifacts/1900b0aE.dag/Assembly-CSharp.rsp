@@ -362,7 +362,7 @@
 "Assets/Scripts/Drones/Commands/CellsMoveUntilHitCommand.cs"
 "Assets/Scripts/Drones/Commands/ICommand.cs"
 "Assets/Scripts/Drones/DroneControl.cs"
-"Assets/Scripts/Drones/DroneController.cs"
+"Assets/Scripts/Drones/DroneExecuter.cs"
 "Assets/Scripts/Drones/DroneStats.cs"
 "Assets/Scripts/Drones/ObjectClickHandler2D.cs"
 "Assets/Scripts/Pazzles/Unexploredcell.cs"
