@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Drone.Commands;
 
 namespace Drones.Commands
 {
@@ -75,7 +74,7 @@ namespace Drones.Commands
             }
         }
 
-        public IEnumerator Execute()
+        public IEnumerator Execute1()
         {
             Drone.GetComponent<DroneStats>().isaction = true;
             Transform _transform = Drone.GetComponent<Transform>();
@@ -89,6 +88,11 @@ namespace Drones.Commands
             }
 
             Drone.GetComponent<DroneStats>().isaction = false;
+        }
+
+        public void Execute()
+        {
+            StartCoroutine(Execute1());
         }
     }
 }
